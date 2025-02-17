@@ -1,1 +1,53 @@
+obj_menu
 
+//criar
+opcoes = ["novo jogo","carregar jogo","opções","sair"];
+index = 0;
+op_max = array_length(opcoes);
+
+//desenahr GUI
+draw_set_font(ft_menu);
+
+var dist = 60;
+var gui_largura = display_get_gui_width();
+var gui_altura = display_get_height();
+var x1 = gui_largura / 2;
+var y1 = gui_altura / 2;
+
+for(var i = 0; i < op_max; i++){
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_center);
+	
+	if(index == i){
+		draw_set_color(c_yellow);
+	} else{
+		draw_set_color(c_purple);
+	}
+	
+	draw_text(x1,y1 + (dist * i),opcoes[i]);
+}
+
+draw_set_font(-1);
+
+//tecla pressionada pra cima
+index--;
+if (index < 0){
+	index = op_max - 1;
+}
+
+//tecla pressionada pra baixo
+	index++;
+if (index > op_max - 1){
+	index = 0;
+}
+
+//tecla pressionada enter
+if(index == 0){
+	room_goto(room2);
+}else if(index == 1){
+  room_goto(room3);
+}else if(index == 2){
+  room_goto(room4);
+}else if(index == 3){
+	game_end();
+}
